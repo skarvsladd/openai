@@ -179,37 +179,27 @@ public class RealtimeAudioExample : IDisposable
 
         // Handle successful audio transcriptions
         // This event is triggered when input audio is successfully converted to text
-        _ai.ServerEvents.Conversation.Item.InputAudioTranscription.OnCompleted += (sender, args) => {
-            Console.WriteLine($"Transcription completed: {args.Transcript}");
-        };
+        _ai.ServerEvents.Conversation.Item.InputAudioTranscription.OnCompleted += (sender, args) => Console.WriteLine($"Transcription completed: {args.Transcript}");
 
         // Handle failed transcription attempts
         // This helps identify issues with audio quality or processing
-        _ai.ServerEvents.Conversation.Item.InputAudioTranscription.OnFailed += (sender, args) => {
-            Console.WriteLine($"Transcription failed: {args.Error}");
-        };
+        _ai.ServerEvents.Conversation.Item.InputAudioTranscription.OnFailed += (sender, args) => Console.WriteLine($"Transcription failed: {args.Error}");
 
         // AUDIO BUFFER STATE EVENTS
 
         // Triggered when audio buffer is successfully committed
         // This indicates the audio has been properly sent to the server
-        _ai.ServerEvents.InputAudioBuffer.OnCommitted += (sender, args) => {
-            Console.WriteLine("Audio buffer committed.");
-        };
+        _ai.ServerEvents.InputAudioBuffer.OnCommitted += (sender, args) => Console.WriteLine("Audio buffer committed.");
 
         // Triggered when audio buffer is cleared
         // This happens when starting fresh or discarding unused audio
-        _ai.ServerEvents.InputAudioBuffer.OnCleared += (sender, args) => {
-            Console.WriteLine("Audio buffer cleared.");
-        };
+        _ai.ServerEvents.InputAudioBuffer.OnCleared += (sender, args) => Console.WriteLine("Audio buffer cleared.");
 
         // SPEECH DETECTION EVENTS
 
         // Handle speech end detection
         // This helps in identifying when the user has finished speaking
-        _ai.ServerEvents.InputAudioBuffer.OnSpeechStopped += (sender, args) => {
-            Console.WriteLine("Speech stopped detected.");
-        };
+        _ai.ServerEvents.InputAudioBuffer.OnSpeechStopped += (sender, args) => Console.WriteLine("Speech stopped detected.");
 
         // Handle speech start detection
         // This is useful for implementing real-time interaction
@@ -291,9 +281,7 @@ public class RealtimeAudioExample : IDisposable
         // ERROR HANDLING
 
         // Global error handler for any API errors
-        _ai.ServerEvents.OnError += (sender, args) => {
-            Console.WriteLine($"Error: {args.Error.Message}");
-        };
+        _ai.ServerEvents.OnError += (sender, args) => Console.WriteLine($"Error: {args.Error.Message}");
 
         // Debug event handler for all server events
         //_ai.ServerEvents.OnAll += (sender, args) =>
